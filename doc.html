@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مستندات API - Havirkesht Backend</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary-color: #10b981;
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+            --dark-border: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --danger-color: #ef4444;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --info-color: #3b82f6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            color: var(--primary-color);
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        .version-badge {
+            background-color: var(--dark-card);
+            color: var(--text-secondary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            border: 1px solid var(--dark-border);
+        }
+        
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--dark-border);
+            color: var(--text-secondary);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background-color: var(--dark-card);
+            color: var(--primary-color);
+        }
+        
+        .main-content {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .sidebar h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--dark-border);
+            color: var(--primary-color);
+        }
+        
+        .endpoint-list {
+            list-style: none;
+        }
+        
+        .endpoint-list li {
+            margin-bottom: 8px;
+        }
+        
+        .endpoint-list a {
+            display: block;
+            padding: 10px 15px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            border-right: 3px solid transparent;
+        }
+        
+        .endpoint-list a:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+            color: var(--text-primary);
+            border-right-color: var(--primary-color);
+        }
+        
+        .endpoint-list a.active {
+            background-color: rgba(99, 102, 241, 0.2);
+            color: var(--primary-color);
+            border-right-color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .endpoint-list i {
+            margin-left: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .content {
+            flex: 1;
+        }
+        
+        .endpoint-card {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid var(--dark-border);
+            transition: all 0.3s ease;
+        }
+        
+        .endpoint-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-dark);
+        }
+        
+        .endpoint-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        .endpoint-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .method-badge {
+            padding: 5px 15px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        
+        .method-post {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: var(--success-color);
+        }
+        
+        .method-get {
+            background-color: rgba(59, 130, 246, 0.2);
+            color: var(--info-color);
+        }
+        
+        .method-put {
+            background-color: rgba(245, 158, 11, 0.2);
+            color: var(--warning-color);
+        }
+        
+        .method-delete {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: var(--danger-color);
+        }
+        
+        .endpoint-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            font-size: 14px;
+        }
+        
+        .params-table, .responses-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .params-table th, .responses-table th {
+            text-align: right;
+            padding: 12px 15px;
+            background-color: rgba(30, 41, 59, 0.8);
+            border-bottom: 2px solid var(--dark-border);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .params-table td, .responses-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--dark-border);
+            color: var(--text-secondary);
+        }
+        
+        .params-table tr:last-child td, .responses-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .param-name {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-family: monospace;
+        }
+        
+        .param-type {
+            color: var(--warning-color);
+            font-family: monospace;
+        }
+        
+        .param-required {
+            color: var(--danger-color);
+            font-size: 13px;
+        }
+        
+        .response-code {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        
+        .code-200 {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: var(--success-color);
+        }
+        
+        .code-201 {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: var(--success-color);
+        }
+        
+        .code-422 {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: var(--danger-color);
+        }
+        
+        .security-badge {
+            display: inline-block;
+            background-color: rgba(99, 102, 241, 0.2);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        .endpoint-path {
+            font-family: monospace;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 8px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: var(--text-secondary);
+            border-right: 3px solid var(--primary-color);
+            direction: ltr;
+            text-align: left;
+        }
+        
+        .tag-badge {
+            display: inline-block;
+            background-color: rgba(30, 41, 59, 0.8);
+            color: var(--text-secondary);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-left: 8px;
+            border: 1px solid var(--dark-border);
+        }
+        
+        .request-body, .response-body {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 14px;
+            color: var(--text-secondary);
+            direction: ltr;
+            text-align: left;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .response-example {
+            margin-top: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--dark-border);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                position: static;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .endpoint-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .params-table, .responses-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div>
+                    <h1>مستندات <span>API</span></h1>
+                    <p>Havirkesht Backend</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="version-badge">نسخه 0.1.0</div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <aside class="sidebar">
+                <h3><i class="fas fa-list"></i> لیست endpoint ها</h3>
+                <ul class="endpoint-list" id="endpointList">
+                    <!-- Endpoint links will be generated here by JavaScript -->
+                </ul>
+            </aside>
+            
+            <main class="content" id="contentArea">
+                <!-- Endpoint cards will be generated here by JavaScript -->
+            </main>
+        </div>
+        
+        <footer>
+            <p>تمامی حقوق محفوظ است © ۲۰۲۳ Havirkesht Backend API</p>
+            <p>مستندات تولید شده بر اساس OpenAPI 3.1.0</p>
+        </footer>
+    </div>
+
+    <script>
+        // API data from the provided information
+        const apiData = {
+            "openapi": "3.1.0",
+            "info": {
+                "title": "Havirkesht Backend",
+                "version": "0.1.0"
+            },
+            "paths": {
+                "/users/admin/": {
+                    "post": {
+                        "tags": ["Users"],
+                        "summary": "Admin Create User",
+                        "description": "ایجاد کاربر توسط ادمین",
+                        "operationId": "admin_create_user_users_admin__post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "username": {"type": "string"},
+                                            "password": {"type": "string"},
+                                            "fullname": {"type": "string"},
+                                            "email": {"type": "string"},
+                                            "disabled": {"type": "boolean", "default": false},
+                                            "role_id": {"type": "integer"},
+                                            "phone_number": {"type": "string"}
+                                        },
+                                        "required": ["username", "password", "fullname", "email"]
+                                    }
+                                }
+                            },
+                            "required": true
+                        },
+                        "responses": {
+                            "201": {
+                                "description": "کاربر با موفقیت ایجاد شد",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {"type": "string"}
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "security": [{"OAuth2PasswordBearer": []}]
+                    }
+                },
+                "/users/{user_id}": {
+                    "get": {
+                        "tags": ["Users"],
+                        "summary": "Get User",
+                        "description": "دریافت اطلاعات کاربر بر اساس شناسه",
+                        "operationId": "get_user_users__user_id__get",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                        "parameters": [
+                            {
+                                "name": "user_id",
+                                "in": "path",
+                                "required": true,
+                                "schema": {
+                                    "type": "integer",
+                                    "title": "User Id"
+                                }
+                            }
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "created_at": {"type": "string", "format": "date-time"},
+                                                "created_at_jalali": {"type": "string"},
+                                                "update_at": {"type": "string", "format": "date-time"},
+                                                "update_at_jalali": {"type": "string"},
+                                                "id": {"type": "integer"},
+                                                "username": {"type": "string"},
+                                                "email": {"type": "string"},
+                                                "fullname": {"type": "string"},
+                                                "phone_number": {"type": "string"},
+                                                "role_id": {"type": "integer"},
+                                                "disabled": {"type": "boolean"}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "put": {
+                        "tags": ["Users"],
+                        "summary": "Update User",
+                        "description": "به‌روزرسانی اطلاعات کاربر",
+                        "operationId": "update_user_users__user_id__put",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                        "parameters": [
+                            {
+                                "name": "user_id",
+                                "in": "path",
+                                "required": true,
+                                "schema": {
+                                    "type": "integer",
+                                    "title": "User Id"
+                                }
+                            }
+                        ],
+                        "requestBody": {
+                            "required": true,
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "username": {"type": "string"},
+                                            "password": {"type": "string"},
+                                            "fullname": {"type": "string"},
+                                            "email": {"type": "string"},
+                                            "phone_number": {"type": "string"},
+                                            "role_id": {"type": "integer"},
+                                            "disabled": {"type": "boolean"}
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "created_at": {"type": "string", "format": "date-time"},
+                                                "created_at_jalali": {"type": "string"},
+                                                "update_at": {"type": "string", "format": "date-time"},
+                                                "update_at_jalali": {"type": "string"},
+                                                "id": {"type": "integer"},
+                                                "username": {"type": "string"},
+                                                "email": {"type": "string"},
+                                                "fullname": {"type": "string"},
+                                                "phone_number": {"type": "string"},
+                                                "role_id": {"type": "integer"},
+                                                "disabled": {"type": "boolean"}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/users/": {
+                    "get": {
+                        "tags": ["Users"],
+                        "summary": "Get All Users",
+                        "description": "دریافت لیست تمامی کاربران با قابلیت صفحه‌بندی و جستجو",
+                        "operationId": "get_all_users_users__get",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                        "parameters": [
+                            {
+                                "name": "page",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "default": 1,
+                                    "title": "Page"
+                                }
+                            },
+                            {
+                                "name": "size",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "type": "integer",
+                                    "maximum": 100,
+                                    "minimum": 1,
+                                    "default": 50,
+                                    "title": "Size"
+                                }
+                            },
+                            {
+                                "name": "sort_by",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Sort By"
+                                }
+                            },
+                            {
+                                "name": "sort_order",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string", "pattern": "^(asc|desc)$"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Sort Order"
+                                }
+                            },
+                            {
+                                "name": "search",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Search"
+                                }
+                            }
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {"type": "integer"},
+                                                "size": {"type": "integer"},
+                                                "pages": {"type": "integer"},
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "created_at": {"type": "string", "format": "date-time"},
+                                                            "created_at_jalali": {"type": "string"},
+                                                            "update_at": {"type": "string", "format": "date-time"},
+                                                            "update_at_jalali": {"type": "string"},
+                                                            "id": {"type": "integer"},
+                                                            "username": {"type": "string"},
+                                                            "email": {"type": "string"},
+                                                            "fullname": {"type": "string"},
+                                                            "phone_number": {"type": "string"},
+                                                            "role_id": {"type": "integer"},
+                                                            "disabled": {"type": "boolean"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/token": {
+                    "post": {
+                        "tags": ["Auth"],
+                        "summary": "Login For Access Token",
+                        "description": "ورود به سیستم و دریافت توکن دسترسی (OAuth2)",
+                        "operationId": "login_for_access_token_token_post",
+                        "requestBody": {
+                            "content": {
+                                "application/x-www-form-urlencoded": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "grant_type": {
+                                                "anyOf": [
+                                                    {"type": "string", "pattern": "password"},
+                                                    {"type": "null"}
+                                                ]
+                                            },
+                                            "username": {"type": "string"},
+                                            "password": {"type": "string"},
+                                            "scope": {"type": "string"},
+                                            "client_id": {
+                                                "anyOf": [
+                                                    {"type": "string"},
+                                                    {"type": "null"}
+                                                ]
+                                            },
+                                            "client_secret": {
+                                                "anyOf": [
+                                                    {"type": "string"},
+                                                    {"type": "null"}
+                                                ]
+                                            }
+                                        },
+                                        "required": ["username", "password"]
+                                    }
+                                }
+                            },
+                            "required": true
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "access_token": {"type": "string"},
+                                                "refresh_token": {"type": "string"},
+                                                "token_type": {"type": "string"}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/refresh-token": {
+                    "post": {
+                        "tags": ["Auth"],
+                        "summary": "Refresh Access Token",
+                        "description": "تازه‌سازی توکن دسترسی",
+                        "operationId": "refresh_access_token_refresh_token_post",
+                        "parameters": [
+                            {
+                                "name": "refresh_token",
+                                "in": "query",
+                                "required": true,
+                                "schema": {
+                                    "type": "string",
+                                    "title": "Refresh Token"
+                                }
+                            }
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "access_token": {"type": "string"},
+                                                "refresh_token": {"type": "string"},
+                                                "token_type": {"type": "string"}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/logout": {
+                    "post": {
+                        "tags": ["Auth"],
+                        "summary": "Logout",
+                        "description": "خروج از سیستم و باطل کردن توکن‌ها",
+                        "operationId": "logout_logout_post",
+                        "parameters": [
+                            {
+                                "name": "access_token",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Access Token"
+                                }
+                            },
+                            {
+                                "name": "refresh_token",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Refresh Token"
+                                }
+                            }
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {"type": "string"}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/changepassword/": {
+                    "post": {
+                        "tags": ["Auth"],
+                        "summary": "Change Password",
+                        "description": "تغییر رمز عبور کاربر",
+                        "operationId": "change_password_changepassword__post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "old_password": {"type": "string"},
+                                            "new_password": {"type": "string"},
+                                            "new_password_repeat": {"type": "string"}
+                                        },
+                                        "required": ["old_password", "new_password", "new_password_repeat"]
+                                    }
+                                }
+                            },
+                            "required": true
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "security": [{"OAuth2PasswordBearer": []}]
+                    }
+                },
+                "/province/": {
+                    "post": {
+                        "tags": ["Province"],
+                        "summary": "Create Province",
+                        "description": "ایجاد استان جدید",
+                        "operationId": "create_province_province__post",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                        "requestBody": {
+                            "required": true,
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "province": {"type": "string"}
+                                        },
+                                        "required": ["province"]
+                                    }
+                                }
+                            }
+                        },
+                        "responses": {
+                            "201": {
+                                "description": "استان با موفقیت ایجاد شد",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "province": {"type": "string"}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "get": {
+                        "tags": ["Province"],
+                        "summary": "Get All Provinces",
+                        "description": "دریافت لیست تمامی استان‌ها با قابلیت صفحه‌بندی و جستجو",
+                        "operationId": "get_all_provinces_province__get",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                        "parameters": [
+                            {
+                                "name": "page",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "default": 1,
+                                    "title": "Page"
+                                }
+                            },
+                            {
+                                "name": "size",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "type": "integer",
+                                    "maximum": 100,
+                                    "minimum": 1,
+                                    "default": 50,
+                                    "title": "Size"
+                                }
+                            },
+                            {
+                                "name": "sort_by",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Sort By"
+                                }
+                            },
+                            {
+                                "name": "sort_order",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string", "pattern": "^(asc|desc)$"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Sort Order"
+                                }
+                            },
+                            {
+                                "name": "search",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Search"
+                                }
+                            }
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {"type": "integer"},
+                                                "size": {"type": "integer"},
+                                                "pages": {"type": "integer"},
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "province": {"type": "string"},
+                                                            "id": {"type": "integer"},
+                                                            "created_at": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/province/{province}": {
+                    "delete": {
+                        "tags": ["Province"],
+                        "summary": "Delete Province",
+                        "description": "حذف استان",
+                        "operationId": "delete_province_province__province__delete",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                        "parameters": [
+                            {
+                                "name": "province",
+                                "in": "path",
+                                "required": true,
+                                "schema": {
+                                    "type": "string",
+                                    "title": "Province"
+                                }
+                            }
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {"type": "string"}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/city/": {
+                    "post": {
+                        "tags": ["City"],
+                        "summary": "Create City",
+                        "description": "ایجاد شهر جدید",
+                        "operationId": "create_city_city__post",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                        "requestBody": {
+                            "required": true,
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "city": {"type": "string"},
+                                            "province_id": {"type": "integer"}
+                                        },
+                                        "required": ["city", "province_id"]
+                                    }
+                                }
+                            }
+                        },
+                        "responses": {
+                            "201": {
+                                "description": "شهر با موفقیت ایجاد شد",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "city": {"type": "string"},
+                                                "province_id": {"type": "integer"},
+                                                "id": {"type": "integer"},
+                                                "created_at": {"type": "string"}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "get": {
+                        "tags": ["City"],
+                        "summary": "Get All Cities",
+                        "description": "دریافت لیست تمامی شهرها با قابلیت صفحه‌بندی و جستجو",
+                        "operationId": "get_all_cities_city__get",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                        "parameters": [
+                            {
+                                "name": "page",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "default": 1,
+                                    "title": "Page"
+                                }
+                            },
+                            {
+                                "name": "size",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "type": "integer",
+                                    "maximum": 100,
+                                    "minimum": 1,
+                                    "default": 50,
+                                    "title": "Size"
+                                }
+                            },
+                            {
+                                "name": "sort_by",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Sort By"
+                                }
+                            },
+                            {
+                                "name": "sort_order",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string", "pattern": "^(asc|desc)$"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Sort Order"
+                                }
+                            },
+                            {
+                                "name": "search",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Search"
+                                }
+                            }
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {"type": "integer"},
+                                                "size": {"type": "integer"},
+                                                "pages": {"type": "integer"},
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "city": {"type": "string"},
+                                                            "province_id": {"type": "integer"},
+                                                            "id": {"type": "integer"},
+                                                            "created_at": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/city/{city}": {
+                    "delete": {
+                        "tags": ["City"],
+                        "summary": "Delete City",
+                        "description": "حذف شهر",
+                        "operationId": "delete_city_city__city__delete",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                        "parameters": [
+                            {
+                                "name": "city",
+                                "in": "path",
+                                "required": true,
+                                "schema": {
+                                    "type": "string",
+                                    "title": "City"
+                                }
+                            }
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {"type": "string"}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/village/": {
+                    "post": {
+                        "tags": ["Village"],
+                        "summary": "Create Village",
+                        "description": "ایجاد روستا جدید",
+                        "operationId": "create_village_village__post",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                        "requestBody": {
+                            "required": true,
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "village": {"type": "string"},
+                                            "city_id": {"type": "integer"}
+                                        },
+                                        "required": ["village", "city_id"]
+                                    }
+                                }
+                            }
+                        },
+                        "responses": {
+                            "201": {
+                                "description": "روستا با موفقیت ایجاد شد",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "village": {"type": "string"},
+                                                "city_id": {"type": "integer"},
+                                                "id": {"type": "integer"},
+                                                "created_at": {"type": "string"},
+                                                "city": {"type": "string"}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "get": {
+                        "tags": ["Village"],
+                        "summary": "Get All Villages",
+                        "description": "دریافت لیست تمامی روستاها با قابلیت صفحه‌بندی و جستجو",
+                        "operationId": "get_all_villages_village__get",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                        "parameters": [
+                            {
+                                "name": "page",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "default": 1,
+                                    "title": "Page"
+                                }
+                            },
+                            {
+                                "name": "size",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "type": "integer",
+                                    "maximum": 100,
+                                    "minimum": 1,
+                                    "default": 50,
+                                    "title": "Size"
+                                }
+                            },
+                            {
+                                "name": "sort_by",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Sort By"
+                                }
+                            },
+                            {
+                                "name": "sort_order",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string", "pattern": "^(asc|desc)$"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Sort Order"
+                                }
+                            },
+                            {
+                                "name": "search",
+                                "in": "query",
+                                "required": false,
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "null"}
+                                    ],
+                                    "title": "Search"
+                                }
+                            }
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {"type": "integer"},
+                                                "size": {"type": "integer"},
+                                                "pages": {"type": "integer"},
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "village": {"type": "string"},
+                                                            "city_id": {"type": "integer"},
+                                                            "id": {"type": "integer"},
+                                                            "created_at": {"type": "string"},
+                                                            "city": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "/village/{village}": {
+                    "delete": {
+                        "tags": ["Village"],
+                        "summary": "Delete Village",
+                        "description": "حذف روستا",
+                        "operationId": "delete_village_village__village__delete",
+                        "security": [{"OAuth2PasswordBearer": []}],
+                        "parameters": [
+                            {
+                                "name": "village",
+                                "in": "path",
+                                "required": true,
+                                "schema": {
+                                    "type": "string",
+                                    "title": "Village"
+                                }
+                            }
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "پاسخ موفقیت‌آمیز",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {"type": "string"}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "422": {
+                                "description": "خطای اعتبارسنجی",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "detail": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "loc": {"type": "array", "items": {"type": "string"}},
+                                                            "msg": {"type": "string"},
+                                                            "type": {"type": "string"}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Helper function to get method icon
+        function getMethodIcon(method) {
+            const icons = {
+                'post': 'fa-plus-circle',
+                'get': 'fa-download',
+                'put': 'fa-edit',
+                'delete': 'fa-trash',
+                'patch': 'fa-pencil-alt'
+            };
+            return icons[method.toLowerCase()] || 'fa-code';
+        }
+
+        // Helper function to get method color class
+        function getMethodClass(method) {
+            const classes = {
+                'post': 'method-post',
+                'get': 'method-get',
+                'put': 'method-put',
+                'delete': 'method-delete',
+                'patch': 'method-patch'
+            };
+            return classes[method.toLowerCase()] || 'method-get';
+        }
+
+        // Helper function to format JSON for display
+        function formatJSON(jsonObj) {
+            if (!jsonObj) return '';
+            return JSON.stringify(jsonObj, null, 2);
+        }
+
+        // Helper function to generate parameter rows
+        function generateParamRows(parameters) {
+            if (!parameters || parameters.length === 0) {
+                return '<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">بدون پارامتر</td></tr>';
+            }
+            
+            return parameters.map(param => {
+                const required = param.required ? '<span class="param-required">الزامی</span>' : '<span style="color: var(--text-muted);">اختیاری</span>';
+                const paramType = param.schema?.type || 'string';
+                return `
+                    <tr>
+                        <td><span class="param-name">${param.name}</span></td>
+                        <td><span class="param-type">${paramType}</span></td>
+                        <td>${param.in}</td>
+                        <td>${required}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Helper function to generate response examples
+        function generateResponseExamples(responses) {
+            let examplesHTML = '';
+            
+            Object.entries(responses).forEach(([code, response]) => {
+                if (response.content && response.content['application/json'] && response.content['application/json'].schema) {
+                    const schema = response.content['application/json'].schema;
+                    const example = generateExampleFromSchema(schema);
+                    
+                    if (example) {
+                        const codeClass = `code-${code}`;
+                        examplesHTML += `
+                            <div class="response-example">
+                                <div style="margin-bottom: 8px;">
+                                    <span class="response-code ${codeClass}">${code}</span>
+                                    <span style="color: var(--text-muted); margin-right: 10px;">${response.description}</span>
+                                </div>
+                                <div class="response-body">
+                                    ${formatJSON(example)}
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+            });
+            
+            return examplesHTML;
+        }
+
+        // Helper function to generate example from schema
+        function generateExampleFromSchema(schema) {
+            if (!schema) return null;
+            
+            if (schema.type === 'object' && schema.properties) {
+                const example = {};
+                Object.entries(schema.properties).forEach(([propName, propSchema]) => {
+                    // بررسی خاص برای grant_type
+                    if (propName === 'grant_type' && propSchema.anyOf) {
+                        example[propName] = "password";
+                    } else if (propSchema.anyOf) {
+                        // برای فیلدهای nullable
+                        const nonNullType = propSchema.anyOf.find(type => type.type !== 'null');
+                        if (nonNullType) {
+                            example[propName] = generateExampleFromSchema(nonNullType);
+                        }
+                    } else {
+                        example[propName] = generateExampleFromSchema(propSchema);
+                    }
+                });
+                return example;
+            } else if (schema.type === 'array' && schema.items) {
+                return [generateExampleFromSchema(schema.items)];
+            } else if (schema.type === 'string') {
+                return "string";
+            } else if (schema.type === 'integer') {
+                return 0;
+            } else if (schema.type === 'boolean') {
+                return false;
+            } else if (schema.type === 'object') {
+                return {};
+            } else if (schema.type === 'array') {
+                return [];
+            } else if (schema.anyOf) {
+                // Handle union types
+                const nonNullType = schema.anyOf.find(type => type.type !== 'null');
+                if (nonNullType) {
+                    return generateExampleFromSchema(nonNullType);
+                }
+                return null;
+            }
+            
+            return null;
+        }
+
+        // Generate endpoint cards
+        function generateEndpointCards() {
+            const contentArea = document.getElementById('contentArea');
+            let cardsHTML = '';
+            
+            for (const [path, methods] of Object.entries(apiData.paths)) {
+                for (const [method, details] of Object.entries(methods)) {
+                    const methodClass = getMethodClass(method);
+                    const methodIcon = getMethodIcon(method);
+                    const tags = details.tags || [];
+                    
+                    // Request body example
+                    let requestBodyExample = '';
+                    if (details.requestBody && details.requestBody.content) {
+                        const contentType = Object.keys(details.requestBody.content)[0];
+                        const schema = details.requestBody.content[contentType]?.schema;
+                        if (schema) {
+                            const example = generateExampleFromSchema(schema);
+                            if (example) {
+                                requestBodyExample = formatJSON(example);
+                            }
+                        }
+                    }
+                    
+                    cardsHTML += `
+                        <div class="endpoint-card" id="${details.operationId}">
+                            <div class="endpoint-header">
+                                <div>
+                                    <h2 class="endpoint-title">${details.summary}</h2>
+                                    <div class="endpoint-path">${method.toUpperCase()} ${path}</div>
+                                    ${tags.map(tag => `<span class="tag-badge">${tag}</span>`).join('')}
+                                </div>
+                                <div class="method-badge ${methodClass}">
+                                    <i class="fas ${methodIcon}"></i> ${method.toUpperCase()}
+                                </div>
+                            </div>
+                            
+                            <p class="endpoint-description">${details.description || 'بدون توضیحات'}</p>
+                            
+                            ${requestBodyExample ? `
+                            <div class="section-title">
+                                <i class="fas fa-paper-plane"></i> Request Body
+                            </div>
+                            <div class="request-body">
+                                ${requestBodyExample}
+                            </div>
+                            ` : ''}
+                            
+                            ${details.parameters && details.parameters.length > 0 ? `
+                            <div class="section-title">
+                                <i class="fas fa-list"></i> پارامترها
+                            </div>
+                            <table class="params-table">
+                                <thead>
+                                    <tr>
+                                        <th>نام</th>
+                                        <th>نوع</th>
+                                        <th>مکان</th>
+                                        <th>وضعیت</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${generateParamRows(details.parameters)}
+                                </tbody>
+                            </table>
+                            ` : ''}
+                            
+                            <div class="section-title">
+                                <i class="fas fa-reply"></i> پاسخ‌ها
+                            </div>
+                            ${generateResponseExamples(details.responses)}
+                            
+                            ${details.security && details.security.length > 0 ? `
+                            <div class="section-title">
+                                <i class="fas fa-shield-alt"></i> امنیت
+                            </div>
+                            <div class="security-badge">
+                                <i class="fas fa-lock"></i> نیاز به احراز هویت
+                            </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }
+            }
+            
+            contentArea.innerHTML = cardsHTML;
+        }
+
+        // Generate sidebar links
+        function generateSidebarLinks() {
+            const endpointList = document.getElementById('endpointList');
+            let linksHTML = '';
+            let endpointCount = 0;
+            
+            for (const [path, methods] of Object.entries(apiData.paths)) {
+                for (const [method, details] of Object.entries(methods)) {
+                    endpointCount++;
+                    const methodIcon = getMethodIcon(method);
+                    
+                    linksHTML += `
+                        <li>
+                            <a href="#${details.operationId}" class="${endpointCount === 1 ? 'active' : ''}" data-operation="${details.operationId}">
+                                <i class="fas ${methodIcon}" style="color: ${getMethodColor(method)}"></i>
+                                ${details.summary}
+                            </a>
+                        </li>
+                    `;
+                }
+            }
+            
+            endpointList.innerHTML = linksHTML;
+            
+            // Add click event to sidebar links
+            const links = endpointList.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    links.forEach(l => l.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Scroll to the target endpoint
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Helper function to get method color
+        function getMethodColor(method) {
+            const colors = {
+                'post': '#10b981',
+                'get': '#3b82f6',
+                'put': '#f59e0b',
+                'delete': '#ef4444',
+                'patch': '#8b5cf6'
+            };
+            return colors[method.toLowerCase()] || '#94a3b8';
+        }
+
+        // Theme toggle functionality
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-moon')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                // Light theme would be implemented here
+                // For now, we'll just toggle a class on body
+                document.body.classList.toggle('light-theme');
+                this.setAttribute('title', 'تغییر به تم تاریک');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                document.body.classList.remove('light-theme');
+                this.setAttribute('title', 'تغییر به تم روشن');
+            }
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            generateSidebarLinks();
+            generateEndpointCards();
+            
+            // Highlight the first endpoint by default
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetLink = document.querySelector(`a[href="#${targetId}"]`);
+                if (targetLink) {
+                    document.querySelectorAll('.endpoint-list a').forEach(link => link.classList.remove('active'));
+                    targetLink.classList.add('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2149 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مستندات جامع | سیستم مدیریت هاویر کشت</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #d1fae5;
+            --secondary: #6366f1;
+            --accent: #f59e0b;
+            --dark: #1f2937;
+            --light: #ffffff;
+            --background: #f9fafb;
+            --surface: #ffffff;
+            --text: #374151;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 50px 40px;
+            border-radius: var(--radius);
+            margin: 30px 0 40px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-text h1 {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text .subtitle {
+            font-size: 18px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .project-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .info-card i {
+            font-size: 24px;
+            opacity: 0.9;
+        }
+
+        .info-text h4 {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .info-text p {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: sticky;
+            top: 20px;
+            z-index: 1000;
+            margin-bottom: 30px;
+        }
+
+        .nav {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .nav-btn {
+            padding: 12px 20px;
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 14px;
+            flex: 1;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2);
+            border-color: transparent;
+        }
+
+        /* Main Content */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 1200px) {
+            .content-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 35px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-light);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+        }
+
+        .card-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .card-header h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* File Structure */
+        .file-structure {
+            background: var(--background);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 1px solid var(--border);
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .file-item:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .file-icon {
+            color: var(--primary);
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .file-details {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+
+        .file-desc {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* API Endpoints */
+        .endpoint-section {
+            margin: 25px 0;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 25px 0 15px;
+            padding-right: 10px;
+            border-right: 4px solid var(--primary);
+        }
+
+        .endpoint {
+            background: var(--background);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .method {
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .method.get { background: var(--info); color: white; }
+        .method.post { background: var(--success); color: white; }
+        .method.put { background: var(--warning); color: white; }
+        .method.delete { background: var(--danger); color: white; }
+        .method.patch { background: #8b5cf6; color: white; }
+
+        .url {
+            font-family: 'Courier New', 'Monaco', monospace;
+            background: rgba(0,0,0,0.05);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 15px;
+            color: var(--dark);
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .endpoint-desc {
+            color: var(--text);
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .endpoint-params {
+            background: rgba(0,0,0,0.02);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        /* Technology Tags */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .tech-tag {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+        }
+
+        .tech-tag i {
+            font-size: 14px;
+        }
+
+        /* Code Block */
+        .code-container {
+            position: relative;
+            margin: 25px 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: 10px;
+            padding: 25px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px solid #333;
+        }
+
+        .code-header {
+            background: #2d2d30;
+            color: #ccc;
+            padding: 10px 20px;
+            border-radius: 10px 10px 0 0;
+            font-family: 'Consolas', monospace;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .code-keyword { color: #569cd6; }
+        .code-function { color: #dcdcaa; }
+        .code-string { color: #ce9178; }
+        .code-comment { color: #6a9955; }
+        .code-number { color: #b5cea8; }
+        .code-operator { color: #d4d4d4; }
+        .code-variable { color: #9cdcfe; }
+        .code-const { color: #4ec9b0; }
+
+        /* List Styles */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            color: var(--success);
+            font-size: 18px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .feature-content h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .feature-content p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Status Indicators */
+        .status-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .status i {
+            font-size: 10px;
+        }
+
+        .status.success { background: #d1fae5; color: #065f46; }
+        .status.warning { background: #fef3c7; color: #92400e; }
+        .status.error { background: #fee2e2; color: #991b1b; }
+        .status.info { background: #dbeafe; color: #1e40af; }
+
+        /* Architecture Diagram */
+        .architecture {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .architecture::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .architecture-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--surface);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .data-table th {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 15px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 25px;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            color: var(--primary);
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav-container, .header {
+                display: none;
+            }
+            
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+                margin: 15px 0 25px;
+            }
+            
+            .logo {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .logo-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+            }
+            
+            .logo-text h1 {
+                font-size: 28px;
+            }
+            
+            .project-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav {
+                flex-direction: column;
+            }
+            
+            .nav-btn {
+                min-width: 100%;
+            }
+            
+            .card {
+                padding: 25px;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .header {
+                padding: 25px 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .method {
+                padding: 4px 12px;
+                font-size: 11px;
+            }
+            
+            .url {
+                font-size: 13px;
+                padding: 6px 10px;
+            }
+        }
+
+        /* Highlight */
+        .highlight {
+            background: linear-gradient(120deg, var(--primary-light) 0%, transparent 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-right: 5px solid var(--primary);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 8px;
+        }
+
+        .badge-primary { background: var(--primary); color: white; }
+        .badge-secondary { background: var(--secondary); color: white; }
+        .badge-success { background: var(--success); color: white; }
+        .badge-danger { background: var(--danger); color: white; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin: 60px 0 30px;
+            padding: 30px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .version {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header animate-in">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>سیستم مدیریت کشاورزی هوشمند</h1>
+                        <p class="subtitle">هاویر کشت | مستندات فنی جامع پروژه</p>
+                    </div>
+                </div>
+                
+                <div class="project-info-grid">
+                    <div class="info-card">
+                        <i class="fas fa-code-branch"></i>
+                        <div class="info-text">
+                            <h4>نسخه پروژه</h4>
+                            <p>۳.۰.۰</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div class="info-text">
+                            <h4>تاریخ بروزرسانی</h4>
+                            <p>۱۴۰۴/۰۱/۱۵</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-server"></i>
+                        <div class="info-text">
+                            <h4>API Base URL</h4>
+                            <p>edu-api.havirkesht.ir</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-layer-group"></i>
+                        <div class="info-text">
+                            <h4>تعداد فایل‌ها</h4>
+                            <p>۶ فایل اصلی</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <div class="nav-container">
+            <nav class="nav">
+                <a href="#overview" class="nav-btn active">
+                    <i class="fas fa-home"></i>
+                    <span>بررسی کلی</span>
+                </a>
+                <a href="#structure" class="nav-btn">
+                    <i class="fas fa-sitemap"></i>
+                    <span>ساختار پروژه</span>
+                </a>
+                <a href="#pages" class="nav-btn">
+                    <i class="fas fa-file-alt"></i>
+                    <span>صفحات و کامپوننت‌ها</span>
+                </a>
+                <a href="#api" class="nav-btn">
+                    <i class="fas fa-code"></i>
+                    <span>API و Endpoints</span>
+                </a>
+                <a href="#javascript" class="nav-btn">
+                    <i class="fas fa-cogs"></i>
+                    <span>منطق JavaScript</span>
+                </a>
+                <a href="#styles" class="nav-btn">
+                    <i class="fas fa-paint-brush"></i>
+                    <span>استایل‌ها و طراحی</span>
+                </a>
+                <a href="#tech" class="nav-btn">
+                    <i class="fas fa-microchip"></i>
+                    <span>تکنولوژی‌ها</span>
+                </a>
+                <a href="#error" class="nav-btn">
+                    <i class="fas fa-bug"></i>
+                    <span>مدیریت خطا</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-grid">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Overview Section -->
+                <section id="overview" class="card animate-in">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h2>بررسی کلی پروژه</h2>
+                    </div>
+                    
+                    <div class="highlight">
+                        <h3 style="color: var(--primary-dark); margin-bottom: 15px;">🏗️ معماری پروژه</h3>
+                        <p>پروژه <strong>هاویر کشت</strong> یک Single Page Application (SPA) با معماری مدرن Frontend است که از الگوی Component-Based Architecture پیروی می‌کند. این سیستم شامل دو بخش اصلی زیر است:</p>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 25px 0;">
+                        <div style="background: var(--primary-light); padding: 20px; border-radius: 10px; border: 2px solid var(--primary);">
+                            <h4 style="color: var(--primary-dark); margin-bottom: 10px;"><i class="fas fa-sign-in-alt"></i> سیستم احراز هویت</h4>
+                            <ul style="padding-right: 20px; color: var(--text);">
+                                <li>صفحه ورود با اعتبارسنجی</li>
+                                <li>مدیریت توکن JWT</li>
+                                <li>قابلیت Remember Me</li>
+                                <li>تغییر تم تاریک/روشن</li>
+                                <li>بررسی وضعیت API</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: var(--info-light); padding: 20px; border-radius: 10px; border: 2px solid var(--info);">
+                            <h4 style="color: var(--info-dark); margin-bottom: 10px;"><i class="fas fa-tachometer-alt"></i> داشبورد مدیریت</h4>
+                            <ul style="padding-right: 20px; color: var(--text);">
+                                <li>مدیریت استان‌ها</li>
+                                <li>مدیریت شهرستان‌ها</li>
+                                <li>مدیریت روستاها</li>
+                                <li>مدیریت کاربران</li>
+                                <li>تنظیمات سیستم</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="architecture">
+                        <div class="architecture-content">
+                            <h3 style="color: white; margin-bottom: 20px;">📊 فلوچارت سیستم</h3>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; text-align: center;">
+                                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px;">
+                                    <i class="fas fa-user" style="font-size: 24px; margin-bottom: 10px;"></i>
+                                    <p>ورود کاربر</p>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px;">
+                                    <i class="fas fa-key" style="font-size: 24px; margin-bottom: 10px;"></i>
+                                    <p>احراز هویت</p>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px;">
+                                    <i class="fas fa-home" style="font-size: 24px; margin-bottom: 10px;"></i>
+                                    <p>داشبورد</p>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px;">
+                                    <i class="fas fa-database" style="font-size: 24px; margin-bottom: 10px;"></i>
+                                    <p>مدیریت داده</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- File Structure -->
+                <section id="structure" class="card animate-in" style="animation-delay: 0.1s">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h2>ساختار پروژه</h2>
+                    </div>
+                    
+                    <div class="tabs">
+                        <button class="tab active" data-tab="files">فایل‌ها</button>
+                        <button class="tab" data-tab="folders">پوشه‌ها</button>
+                        <button class="tab" data-tab="flow">فلو داده</button>
+                    </div>
+                    
+                    <div id="files" class="tab-content active">
+                        <div class="file-structure">
+                            <div class="file-item" onclick="showFileDetails('index.html')">
+                                <i class="fas fa-file-code file-icon"></i>
+                                <div class="file-details">
+                                    <div class="file-name">index.html</div>
+                                    <div class="file-desc">صفحه اصلی ورود به سیستم - ۱۳۹ خط کد</div>
+                                </div>
+                                <span class="badge badge-primary">HTML</span>
+                            </div>
+                            
+                            <div class="file-item" onclick="showFileDetails('login-script.js')">
+                                <i class="fas fa-file-code file-icon"></i>
+                                <div class="file-details">
+                                    <div class="file-name">login-script.js</div>
+                                    <div class="file-desc">منطق صفحه ورود - ۴۱۶ خط کد</div>
+                                </div>
+                                <span class="badge badge-success">JavaScript</span>
+                            </div>
+                            
+                            <div class="file-item" onclick="showFileDetails('style.css')">
+                                <i class="fas fa-file-code file-icon"></i>
+                                <div class="file-details">
+                                    <div class="file-name">style.css</div>
+                                    <div class="file-desc">استایل‌های صفحه ورود - ۴۵۰ خط کد</div>
+                                </div>
+                                <span class="badge badge-secondary">CSS</span>
+                            </div>
+                            
+                            <div class="file-item" onclick="showFileDetails('main.html')">
+                                <i class="fas fa-file-code file-icon"></i>
+                                <div class="file-details">
+                                    <div class="file-name">main.html</div>
+                                    <div class="file-desc">صفحه داشبورد مدیریت - ۷۳۲ خط کد</div>
+                                </div>
+                                <span class="badge badge-primary">HTML</span>
+                            </div>
+                            
+                            <div class="file-item" onclick="showFileDetails('main-script.js')">
+                                <i class="fas fa-file-code file-icon"></i>
+                                <div class="file-details">
+                                    <div class="file-name">main-script.js</div>
+                                    <div class="file-desc">منطق اصلی برنامه - ۱۰۹۶ خط کد</div>
+                                </div>
+                                <span class="badge badge-success">JavaScript</span>
+                            </div>
+                            
+                            <div class="file-item" onclick="showFileDetails('main-style.css')">
+                                <i class="fas fa-file-code file-icon"></i>
+                                <div class="file-details">
+                                    <div class="file-name">main-style.css</div>
+                                    <div class="file-desc">استایل‌های داشبورد - ۱۰۱۶ خط کد</div>
+                                </div>
+                                <span class="badge badge-secondary">CSS</span>
+                            </div>
+                        </div>
+                        
+                        <div style="background: var(--background); padding: 20px; border-radius: 10px; margin-top: 20px;">
+                            <h4 style="color: var(--primary-dark); margin-bottom: 10px;">📊 آمار کد</h4>
+                            <table class="data-table">
+                                <tr>
+                                    <td>کل خطوط کد</td>
+                                    <td><strong>۳,۸۴۹ خط</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>HTML</td>
+                                    <td>۸۷۱ خط (۲۳٪)</td>
+                                </tr>
+                                <tr>
+                                    <td>CSS</td>
+                                    <td>۱,۴۶۶ خط (۳۸٪)</td>
+                                </tr>
+                                <tr>
+                                    <td>JavaScript</td>
+                                    <td>۱,۵۱۲ خط (۳۹٪)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div id="folders" class="tab-content">
+                        <div class="code-block" style="margin: 20px 0;">
+                            <span style="color: #569cd6;">havirkesht-project/</span><br>
+                            &nbsp;&nbsp;├── <span style="color: #ce9178;">index.html</span><br>
+                            &nbsp;&nbsp;├── <span style="color: #ce9178;">style.css</span><br>
+                            &nbsp;&nbsp;├── <span style="color: #ce9178;">login-script.js</span><br>
+                            &nbsp;&nbsp;├── <span style="color: #ce9178;">main.html</span><br>
+                            &nbsp;&nbsp;├── <span style="color: #ce9178;">main-style.css</span><br>
+                            &nbsp;&nbsp;├── <span style="color: #ce9178;">main-script.js</span><br>
+                            &nbsp;&nbsp;├── <span style="color: #6a9955;">assets/</span><br>
+                            &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── <span style="color: #ce9178;">images/</span><br>
+                            &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── <span style="color: #ce9178;">fonts/</span><br>
+                            &nbsp;&nbsp;└── <span style="color: #6a9955;">docs/</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span style="color: #ce9178;">project-documentation.html</span>
+                        </div>
+                    </div>
+                    
+                    <div id="flow" class="tab-content">
+                        <div style="background: var(--background); padding: 20px; border-radius: 10px;">
+                            <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🔀 فلو مدیریت داده</h4>
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
+                                <div style="background: white; padding: 15px; border-radius: 8px; border: 2px solid var(--primary);">
+                                    <strong>Frontend (Client)</strong> → <span style="color: var(--primary);">API Request</span> → <strong>Backend (Server)</strong>
+                                </div>
+                                <div style="text-align: center; color: var(--text-light);">
+                                    <i class="fas fa-arrow-down"></i>
+                                </div>
+                                <div style="background: white; padding: 15px; border-radius: 8px; border: 2px solid var(--success);">
+                                    <strong>Response (JSON)</strong> ← <span style="color: var(--success);">Data Processing</span> ← <strong>Database</strong>
+                                </div>
+                                <div style="text-align: center; color: var(--text-light);">
+                                    <i class="fas fa-arrow-down"></i>
+                                </div>
+                                <div style="background: white; padding: 15px; border-radius: 8px; border: 2px solid var(--info);">
+                                    <strong>State Update</strong> → <span style="color: var(--info);">UI Render</span> → <strong>User Interface</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pages and Components -->
+                <section id="pages" class="card animate-in" style="animation-delay: 0.2s">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h2>صفحات و کامپوننت‌ها</h2>
+                    </div>
+                    
+                    <h3 class="section-title">صفحه ورود (index.html)</h3>
+                    <div class="feature-list">
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>فرم ورود</h4>
+                                <p>فیلدهای نام کاربری و رمز عبور با اعتبارسنجی، قابلیت نمایش/مخفی کردن رمز</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>مدیریت تم</h4>
+                                <p>دکمه تغییر تم تاریک/روشن با ذخیره‌سازی در localStorage</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>سیستم پیام</h4>
+                                <p>نمایش پیام‌های موفقیت، خطا و اطلاعات با انیمیشن</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>مودال اطلاعات توسعه</h4>
+                                <p>نمایش اطلاعات API endpoints برای توسعه‌دهندگان</p>
+                            </div>
+                        </li>
+                    </div>
+                    
+                    <h3 class="section-title" style="margin-top: 30px;">صفحه داشبورد (main.html)</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>کامپوننت</th>
+                                <th>توضیحات</th>
+                                <th>آیکون</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Sidebar</strong></td>
+                                <td>منوی ناوبری اصلی با دسته‌بندی‌های مختلف</td>
+                                <td><i class="fas fa-bars"></i></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Header</strong></td>
+                                <td>هدر با جستجو، اعلان‌ها و دکمه‌های اکشن</td>
+                                <td><i class="fas fa-header"></i></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dashboard Stats</strong></td>
+                                <td>کارت‌های آماری با اعداد و نمودارها</td>
+                                <td><i class="fas fa-chart-bar"></i></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Data Tables</strong></td>
+                                <td>جدول‌های داده با قابلیت جستجو و مرتب‌سازی</td>
+                                <td><i class="fas fa-table"></i></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Modals</strong></td>
+                                <td>پنجره‌های modal برای افزودن/ویرایش/حذف</td>
+                                <td><i class="fas fa-window-maximize"></i></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pagination</strong></td>
+                                <td>صفحه‌بندی برای داده‌های زیاد</td>
+                                <td><i class="fas fa-copy"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- API Endpoints -->
+                <section id="api" class="card animate-in" style="animation-delay: 0.3s">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h2>API Endpoints و ارتباطات</h2>
+                    </div>
+                    
+                    <div class="highlight">
+                        <h4 style="color: var(--primary-dark); margin-bottom: 10px;">🌐 Base URL</h4>
+                        <div class="url" style="font-size: 16px; background: white; padding: 12px; margin: 10px 0;">
+                            https://edu-api.havirkesht.ir
+                        </div>
+                        <p style="margin-top: 10px;">همه endpointها از این آدرس پایه استفاده می‌کنند.</p>
+                    </div>
+                    
+                    <h3 class="section-title">🔐 احراز هویت (Authentication)</h3>
+                    <div class="endpoint-section">
+                        <div class="endpoint">
+                            <div class="endpoint-header">
+                                <span class="method post">POST</span>
+                                <span class="url">/token</span>
+                            </div>
+                            <div class="endpoint-desc">
+                                دریافت توکن دسترسی با استفاده از grant_type=password. این endpoint برای ورود کاربر استفاده می‌شود.
+                            </div>
+                            <div class="endpoint-params">
+                                <strong>پارامترهای مورد نیاز:</strong><br>
+                                • grant_type = "password"<br>
+                                • username = "نام کاربری"<br>
+                                • password = "رمز عبور"<br>
+                                • client_id = "web-client"<br>
+                                • client_secret = "secret-key"
+                            </div>
+                        </div>
+                        
+                        <div class="endpoint">
+                            <div class="endpoint-header">
+                                <span class="method post">POST</span>
+                                <span class="url">/refresh-token</span>
+                            </div>
+                            <div class="endpoint-desc">
+                                تمدید توکن منقضی شده با استفاده از refresh token.
+                            </div>
+                        </div>
+                        
+                        <div class="endpoint">
+                            <div class="endpoint-header">
+                                <span class="method post">POST</span>
+                                <span class="url">/logout</span>
+                            </div>
+                            <div class="endpoint-desc">
+                                خروج کاربر از سیستم و باطل کردن توکن.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="section-title">🗺️ مدیریت مکان‌ها (Location Management)</h3>
+                    <div class="endpoint-section">
+                        <div class="endpoint">
+                            <div class="endpoint-header">
+                                <span class="method get">GET</span>
+                                <span class="method post">POST</span>
+                                <span class="method delete">DELETE</span>
+                                <span class="url">/province/</span>
+                            </div>
+                            <div class="endpoint-desc">
+                                مدیریت استان‌ها - دریافت لیست، افزودن استان جدید، حذف استان.
+                            </div>
+                            <div class="endpoint-params">
+                                <strong>پارامترهای GET:</strong><br>
+                                • page = شماره صفحه<br>
+                                • size = تعداد در هر صفحه<br>
+                                • search = جستجو<br>
+                                • sort_by = فیلد مرتب‌سازی
+                            </div>
+                        </div>
+                        
+                        <div class="endpoint">
+                            <div class="endpoint-header">
+                                <span class="method get">GET</span>
+                                <span class="method post">POST</span>
+                                <span class="method delete">DELETE</span>
+                                <span class="url">/city/</span>
+                            </div>
+                            <div class="endpoint-desc">
+                                مدیریت شهرستان‌ها - با فیلتر بر اساس استان.
+                            </div>
+                        </div>
+                        
+                        <div class="endpoint">
+                            <div class="endpoint-header">
+                                <span class="method get">GET</span>
+                                <span class="method post">POST</span>
+                                <span class="method delete">DELETE</span>
+                                <span class="url">/village/</span>
+                            </div>
+                            <div class="endpoint-desc">
+                                مدیریت روستاها - با فیلتر بر اساس شهرستان.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="section-title">👥 مدیریت کاربران (User Management)</h3>
+                    <div class="endpoint-section">
+                        <div class="endpoint">
+                            <div class="endpoint-header">
+                                <span class="method get">GET</span>
+                                <span class="method post">POST</span>
+                                <span class="method delete">DELETE</span>
+                                <span class="url">/users/</span>
+                            </div>
+                            <div class="endpoint-desc">
+                                مدیریت کاربران سیستم.
+                            </div>
+                        </div>
+                        
+                        <div class="endpoint">
+                            <div class="endpoint-header">
+                                <span class="method post">POST</span>
+                                <span class="url">/users/admin/</span>
+                            </div>
+                            <div class="endpoint-desc">
+                                ایجاد کاربر جدید توسط ادمین.
+                            </div>
+                        </div>
+                        
+                        <div class="endpoint">
+                            <div class="endpoint-header">
+                                <span class="method post">POST</span>
+                                <span class="url">/changepassword/</span>
+                            </div>
+                            <div class="endpoint-desc">
+                                تغییر رمز عبور کاربر جاری.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-container" style="margin-top: 30px;">
+                        <div class="code-header">
+                            <i class="fas fa-code"></i> مثال کد - تابع apiRequest
+                        </div>
+                        <div class="code-block">
+                            <span class="code-keyword">async function</span> <span class="code-function">apiRequest</span>(endpoint, method = <span class="code-string">'GET'</span>, params = {}, body = <span class="code-keyword">null</span>) {<br>
+                            &nbsp;&nbsp;<span class="code-comment">// دریافت توکن از storage</span><br>
+                            &nbsp;&nbsp;<span class="code-keyword">const</span> <span class="code-variable">token</span> = <span class="code-function">localStorage</span>.<span class="code-function">getItem</span>(<span class="code-string">'havirkesht_token'</span>)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;|| <span class="code-function">sessionStorage</span>.<span class="code-function">getItem</span>(<span class="code-string">'havirkesht_token'</span>);<br>
+                            <br>
+                            &nbsp;&nbsp;<span class="code-comment">// ساخت URL با پارامترها</span><br>
+                            &nbsp;&nbsp;<span class="code-keyword">const</span> <span class="code-variable">url</span> = <span class="code-keyword">new</span> <span class="code-function">URL</span>(<span class="code-string">`${API_BASE_URL}${endpoint}`</span>);<br>
+                            &nbsp;&nbsp;<span class="code-function">Object</span>.<span class="code-function">keys</span>(params).<span class="code-function">forEach</span>(<span class="code-variable">key</span> <span class="code-keyword">=&gt;</span> {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> (params[<span class="code-variable">key</span>] !== <span class="code-keyword">undefined</span>) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-variable">url</span>.<span class="code-variable">searchParams</span>.<span class="code-function">append</span>(<span class="code-variable">key</span>, params[<span class="code-variable">key</span>]);<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;});<br>
+                            <br>
+                            &nbsp;&nbsp;<span class="code-comment">// تنظیم هدرها</span><br>
+                            &nbsp;&nbsp;<span class="code-keyword">const</span> <span class="code-variable">headers</span> = { <span class="code-string">'Accept'</span>: <span class="code-string">'application/json'</span> };<br>
+                            &nbsp;&nbsp;<span class="code-keyword">if</span> (<span class="code-variable">token</span>) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-variable">headers</span>[<span class="code-string">'Authorization'</span>] = <span class="code-string">`Bearer ${token}`</span>;<br>
+                            &nbsp;&nbsp;}<br>
+                            }</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- JavaScript Logic -->
+                <section id="javascript" class="card animate-in">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>منطق JavaScript</h3>
+                    </div>
+                    
+                    <div class="status-group">
+                        <span class="status success">
+                            <i class="fas fa-circle"></i> ES6+ Modern
+                        </span>
+                        <span class="status info">
+                            <i class="fas fa-circle"></i> Async/Await
+                        </span>
+                        <span class="status warning">
+                            <i class="fas fa-circle"></i> State Management
+                        </span>
+                    </div>
+                    
+                    <h4 class="section-title">فایل login-script.js</h4>
+                    <ul class="feature-list">
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>مدیریت احراز هویت</h4>
+                                <p>ارسال درخوات POST به /token و مدیریت پاسخ</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>ذخیره‌سازی توکن</h4>
+                                <p>استفاده از localStorage/sessionStorage برای Remember Me</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>بررسی وضعیت API</h4>
+                                <p>بررسی اتصال به سرور قبل از ورود</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <h4 class="section-title" style="margin-top: 25px;">فایل main-script.js</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag"><i class="fas fa-database"></i> State Management</span>
+                        <span class="tech-tag"><i class="fas fa-sync-alt"></i> CRUD Operations</span>
+                        <span class="tech-tag"><i class="fas fa-search"></i> Debounced Search</span>
+                        <span class="tech-tag"><i class="fas fa-copy"></i> Pagination</span>
+                        <span class="tech-tag"><i class="fas fa-table"></i> Table Rendering</span>
+                    </div>
+                    
+                    <div class="code-container" style="margin: 20px 0;">
+                        <div class="code-header">
+                            <i class="fas fa-code"></i> State Management Object
+                        </div>
+                        <div class="code-block">
+                            <span class="code-keyword">let</span> <span class="code-variable">currentState</span> = {<br>
+                            &nbsp;&nbsp;<span class="code-variable">currentSection</span>: <span class="code-string">'dashboard'</span>,<br>
+                            &nbsp;&nbsp;<span class="code-variable">provinces</span>: { <span class="code-variable">data</span>: [], <span class="code-variable">total</span>: <span class="code-number">0</span>, <span class="code-variable">page</span>: <span class="code-number">1</span>, <span class="code-variable">size</span>: <span class="code-number">10</span> },<br>
+                            &nbsp;&nbsp;<span class="code-variable">cities</span>: { <span class="code-variable">data</span>: [], <span class="code-variable">total</span>: <span class="code-number">0</span>, <span class="code-variable">page</span>: <span class="code-number">1</span>, <span class="code-variable">size</span>: <span class="code-number">10</span> },<br>
+                            &nbsp;&nbsp;<span class="code-variable">villages</span>: { <span class="code-variable">data</span>: [], <span class="code-variable">total</span>: <span class="code-number">0</span>, <span class="code-variable">page</span>: <span class="code-number">1</span>, <span class="code-variable">size</span>: <span class="code-number">10</span> },<br>
+                            &nbsp;&nbsp;<span class="code-variable">users</span>: { <span class="code-variable">data</span>: [], <span class="code-variable">total</span>: <span class="code-number">0</span>, <span class="code-variable">page</span>: <span class="code-number">1</span>, <span class="code-variable">size</span>: <span class="code-number">10</span> }<br>
+                            };
+                        </div>
+                    </div>
+                    
+                    <div style="background: var(--background); padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <h4 style="color: var(--primary-dark); margin-bottom: 10px;">🎯 توابع اصلی</h4>
+                        <table class="data-table">
+                            <tr>
+                                <td>apiRequest()</td>
+                                <td>تابع اصلی ارتباط با API</td>
+                            </tr>
+                            <tr>
+                                <td>showSection()</td>
+                                <td>تغییر بخش‌های داشبورد</td>
+                            </tr>
+                            <tr>
+                                <td>loadProvinces()</td>
+                                <td>بارگذاری استان‌ها</td>
+                            </tr>
+                            <tr>
+                                <td>renderTable()</td>
+                                <td>رندر جداول داده</td>
+                            </tr>
+                            <tr>
+                                <td>showMessage()</td>
+                                <td>نمایش پیام به کاربر</td>
+                            </tr>
+                            <tr>
+                                <td>handleDelete()</td>
+                                <td>مدیریت حذف آیتم</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Styles and Design -->
+                <section id="styles" class="card animate-in" style="animation-delay: 0.1s">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>استایل‌ها و طراحی</h3>
+                    </div>
+                    
+                    <h4 class="section-title">🎨 سیستم طراحی (Design System)</h4>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px 0;">
+                        <div style="background: #10b981; height: 40px; border-radius: 8px;"></div>
+                        <div style="background: #6366f1; height: 40px; border-radius: 8px;"></div>
+                        <div style="background: #f59e0b; height: 40px; border-radius: 8px;"></div>
+                        <div style="background: #1f2937; height: 40px; border-radius: 8px;"></div>
+                        <div style="background: #ef4444; height: 40px; border-radius: 8px;"></div>
+                        <div style="background: #3b82f6; height: 40px; border-radius: 8px;"></div>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>CSS Custom Properties</h4>
+                                <p>استفاده از متغیرهای CSS برای تم‌های تاریک و روشن</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Responsive Design</h4>
+                                <p>Mobile-First Approach با Media Queries</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>CSS Grid & Flexbox</h4>
+                                <p>استفاده از modern layout methods</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Animations & Transitions</h4>
+                                <p>انیمیشن‌های روان برای UX بهتر</p>
+                            </div>
+                        </li>
+                    </div>
+                    
+                    <div class="code-container" style="margin: 20px 0;">
+                        <div class="code-header">
+                            <i class="fas fa-code"></i> CSS Variables System
+                        </div>
+                        <div class="code-block">
+                            <span class="code-keyword">:root</span> {<br>
+                            &nbsp;&nbsp;<span class="code-comment">/* Light Theme Colors */</span><br>
+                            &nbsp;&nbsp;<span class="code-keyword">--primary</span>: <span class="code-number">#10b981</span>;<br>
+                            &nbsp;&nbsp;<span class="code-keyword">--primary-dark</span>: <span class="code-number">#059669</span>;<br>
+                            &nbsp;&nbsp;<span class="code-keyword">--primary-light</span>: <span class="code-number">#d1fae5</span>;<br>
+                            &nbsp;&nbsp;<span class="code-keyword">--secondary</span>: <span class="code-number">#6366f1</span>;<br>
+                            &nbsp;&nbsp;<span class="code-keyword">--shadow</span>: <span class="code-number">0</span> <span class="code-number">20</span><span class="code-variable">px</span> <span class="code-number">60</span><span class="code-variable">px</span> <span class="code-function">rgba</span>(<span class="code-number">0</span>, <span class="code-number">0</span>, <span class="code-number">0</span>, <span class="code-number">0.08</span>);<br>
+                            }<br>
+                            <br>
+                            <span class="code-keyword">[data-theme="dark"]</span> {<br>
+                            &nbsp;&nbsp;<span class="code-comment">/* Dark Theme Overrides */</span><br>
+                            &nbsp;&nbsp;<span class="code-keyword">--primary</span>: <span class="code-number">#34d399</span>;<br>
+                            &nbsp;&nbsp;<span class="code-keyword">--background</span>: <span class="code-number">#111827</span>;<br>
+                            &nbsp;&nbsp;<span class="code-keyword">--surface</span>: <span class="code-number">#1f2937</span>;<br>
+                            }
+                        </div>
+                    </div>
+                    
+                    <div style="background: var(--background); padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <h4 style="color: var(--primary-dark); margin-bottom: 10px;">📱 Breakpoints</h4>
+                        <table class="data-table">
+                            <tr>
+                                <td>Mobile</td>
+                                <td>&lt; 480px</td>
+                                <td><span class="status success">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>Tablet</td>
+                                <td>768px - 1024px</td>
+                                <td><span class="status success">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>Desktop</td>
+                                <td>&gt; 1024px</td>
+                                <td><span class="status success">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>Large Desktop</td>
+                                <td>&gt; 1200px</td>
+                                <td><span class="status success">✓</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Technologies -->
+                <section id="tech" class="card animate-in" style="animation-delay: 0.2s">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3>تکنولوژی‌های استفاده شده</h3>
+                    </div>
+                    
+                    <div class="tech-tags">
+                        <span class="tech-tag"><i class="fab fa-html5"></i> HTML5</span>
+                        <span class="tech-tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+                        <span class="tech-tag"><i class="fab fa-js"></i> JavaScript ES6+</span>
+                        <span class="tech-tag"><i class="fas fa-mobile-alt"></i> Responsive</span>
+                        <span class="tech-tag"><i class="fas fa-palette"></i> CSS Grid</span>
+                        <span class="tech-tag"><i class="fas fa-th-large"></i> Flexbox</span>
+                        <span class="tech-tag"><i class="fas fa-bolt"></i> Fetch API</span>
+                        <span class="tech-tag"><i class="fas fa-database"></i> LocalStorage</span>
+                        <span class="tech-tag"><i class="fas fa-sync-alt"></i> Async/Await</span>
+                        <span class="tech-tag"><i class="fab fa-font-awesome"></i> Font Awesome</span>
+                        <span class="tech-tag"><i class="fas fa-font"></i> Vazirmatn</span>
+                        <span class="tech-tag"><i class="fas fa-code"></i> CSS Variables</span>
+                        <span class="tech-tag"><i class="fas fa-search"></i> Debouncing</span>
+                        <span class="tech-tag"><i class="fas fa-copy"></i> Pagination</span>
+                        <span class="tech-tag"><i class="fas fa-shield-alt"></i> Security</span>
+                    </div>
+                    
+                    <h4 class="section-title" style="margin-top: 25px;">📚 کتابخانه‌ها و ابزارها</h4>
+                    <div class="feature-list">
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Font Awesome 6.4.0</h4>
+                                <p>کتابخانه آیکون‌های وکتور با ۲۰۰۰+ آیکون</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Vazirmatn Font</h4>
+                                <p>فونت فارسی بهینه برای وب و موبایل</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>CDNjs Cloudflare</h4>
+                                <p>میزبانی فایل‌های استاتیک</p>
+                            </div>
+                        </li>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, var(--primary-light), var(--info-light)); padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <h4 style="color: var(--primary-dark); margin-bottom: 10px;">🏆 الگوهای طراحی (Design Patterns)</h4>
+                        <table class="data-table">
+                            <tr>
+                                <td>Component-Based</td>
+                                <td>ساختار ماژولار کامپوننت‌ها</td>
+                            </tr>
+                            <tr>
+                                <td>State Management</td>
+                                <td>مدیریت متمرکز state</td>
+                            </tr>
+                            <tr>
+                                <td>API Abstraction</td>
+                                <td>لایه انتزاع برای API calls</td>
+                            </tr>
+                            <tr>
+                                <td>Error Boundary</td>
+                                <td>مدیریت خطا در سطح برنامه</td>
+                            </tr>
+                            <tr>
+                                <td>Mobile-First</td>
+                                <td>طراحی اولویت موبایل</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Error Handling -->
+                <section id="error" class="card animate-in" style="animation-delay: 0.3s">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h3>مدیریت خطا</h3>
+                    </div>
+                    
+                    <div class="status-group">
+                        <span class="status success">
+                            <i class="fas fa-check-circle"></i> چند لایه‌ای
+                        </span>
+                        <span class="status warning">
+                            <i class="fas fa-exclamation-triangle"></i> کاربرپسند
+                        </span>
+                        <span class="status error">
+                            <i class="fas fa-times-circle"></i> جامع
+                        </span>
+                    </div>
+                    
+                    <h4 class="section-title">🛡️ سطوح مدیریت خطا</h4>
+                    <div class="feature-list">
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>سطح ۱: اعتبارسنجی فرم</h4>
+                                <p>بررسی فیلدهای خالی، فرمت ایمیل، طول رمز عبور</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>سطح ۲: خطاهای شبکه</h4>
+                                <p>مدیریت timeout، قطعی اینترنت، سرعت پایین</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>سطح ۳: خطاهای سرور</h4>
+                                <p>مدیریت HTTP status codes (400, 401, 403, 404, 422, 500)</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>سطح ۴: خطاهای منطق برنامه</h4>
+                                <p>مدیریت state نادرست، داده‌های نامعتبر</p>
+                            </div>
+                        </li>
+                    </div>
+                    
+                    <div class="code-container" style="margin: 20px 0;">
+                        <div class="code-header">
+                            <i class="fas fa-code"></i> الگوی مدیریت خطا در API Calls
+                        </div>
+                        <div class="code-block">
+                            <span class="code-keyword">try</span> {<br>
+                            &nbsp;&nbsp;<span class="code-keyword">const</span> <span class="code-variable">response</span> = <span class="code-keyword">await</span> <span class="code-function">fetch</span>(<span class="code-variable">url</span>, <span class="code-variable">options</span>);<br>
+                            <br>
+                            &nbsp;&nbsp;<span class="code-comment">// بررسی وضعیت پاسخ</span><br>
+                            &nbsp;&nbsp;<span class="code-keyword">if</span> (!<span class="code-variable">response</span>.<span class="code-variable">ok</span>) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">let</span> <span class="code-variable">errorMessage</span> = <span class="code-string">`خطای ${response.status}`</span>;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">let</span> <span class="code-variable">errorDetail</span> = <span class="code-string">''</span>;<br>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// مدیریت خطاهای خاص</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> (<span class="code-variable">response</span>.<span class="code-variable">status</span> === <span class="code-number">401</span> || <span class="code-variable">response</span>.<span class="code-variable">status</span> === <span class="code-number">403</span>) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-variable">errorMessage</span> = <span class="code-string">'نام کاربری یا رمز عبور اشتباه است'</span>;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;} <span class="code-keyword">else</span> <span class="code-keyword">if</span> (<span class="code-variable">response</span>.<span class="code-variable">status</span> === <span class="code-number">422</span>) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-variable">errorMessage</span> = <span class="code-string">'اطلاعات وارد شده معتبر نیست'</span>;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;} <span class="code-keyword">else</span> <span class="code-keyword">if</span> (<span class="code-variable">response</span>.<span class="code-variable">status</span> >= <span class="code-number">500</span>) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-variable">errorMessage</span> = <span class="code-string">'خطای سرور. لطفاً بعداً تلاش کنید'</span>;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// خواندن پیام خطای دقیق‌تر از سرور</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">try</span> {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">const</span> <span class="code-variable">errorData</span> = <span class="code-keyword">await</span> <span class="code-variable">response</span>.<span class="code-function">json</span>();<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> (<span class="code-variable">errorData</span>.<span class="code-variable">detail</span>) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-variable">errorDetail</span> = <span class="code-variable">errorData</span>.<span class="code-variable">detail</span>;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;} <span class="code-keyword">catch</span> (<span class="code-variable">parseError</span>) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">console</span>.<span class="code-function">warn</span>(<span class="code-string">'خطا در خواندن پاسخ خطا:'</span>, <span class="code-variable">parseError</span>);<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">throw new</span> <span class="code-function">Error</span>(<span class="code-variable">errorDetail</span> || <span class="code-variable">errorMessage</span>);<br>
+                            &nbsp;&nbsp;}<br>
+                            } <span class="code-keyword">catch</span> (<span class="code-variable">error</span>) {<br>
+                            &nbsp;&nbsp;<span class="code-function">showMessage</span>(<span class="code-variable">error</span>.<span class="code-variable">message</span>, <span class="code-string">'error'</span>);<br>
+                            &nbsp;&nbsp;<span class="code-function">console</span>.<span class="code-function">error</span>(<span class="code-string">'خطا در عملیات:'</span>, <span class="code-variable">error</span>);<br>
+                            } <span class="code-keyword">finally</span> {<br>
+                            &nbsp;&nbsp;<span class="code-comment">// بازگردانی state</span><br>
+                            &nbsp;&nbsp;<span class="code-function">setButtonLoading</span>(<span class="code-variable">submitBtn</span>, <span class="code-keyword">false</span>);<br>
+                            }
+                        </div>
+                    </div>
+                    
+                    <div style="background: var(--background); padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <h4 style="color: var(--primary-dark); margin-bottom: 10px;">📊 انواع خطاهای مدیریت شده</h4>
+                        <table class="data-table">
+                            <tr>
+                                <td>Network Error</td>
+                                <td>اتصال اینترنت</td>
+                                <td><span class="status success">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>401 Unauthorized</td>
+                                <td>توکن نامعتبر</td>
+                                <td><span class="status success">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>403 Forbidden</td>
+                                <td>دسترسی محدود</td>
+                                <td><span class="status success">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>404 Not Found</td>
+                                <td>منبع یافت نشد</td>
+                                <td><span class="status success">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>422 Validation</td>
+                                <td>اعتبارسنجی داده</td>
+                                <td><span class="status success">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>500 Server Error</td>
+                                <td>خطای سرور</td>
+                                <td><span class="status success">✓</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Security Features -->
+                <section class="card animate-in" style="animation-delay: 0.4s">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>امنیت و بهترین‌ روش‌ها</h3>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>مدیریت توکن JWT</h4>
+                                <p>استفاده از Bearer tokens، تمدید خودکار، ذخیره‌سازی امن</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>اعتبارسنجی سمت کلاینت</h4>
+                                <p>اعتبارسنجی فرم‌ها قبل از ارسال به سرور</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>جلوگیری از XSS</h4>
+                                <p>Escaping داده‌های کاربر و sanitization</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-hourglass-half"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Rate Limiting</h4>
+                                <p>محدودیت تعداد درخواست‌ها و debouncing</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-eye-slash"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>محرمانگی داده</h4>
+                                <p>عدم نمایش اطلاعات حساس در console</p>
+                            </div>
+                        </li>
+                    </div>
+                    
+                    <div class="status-group" style="margin-top: 20px;">
+                        <span class="status success">
+                            <i class="fas fa-check-circle"></i> Secure Token Storage
+                        </span>
+                        <span class="status info">
+                            <i class="fas fa-check-circle"></i> Input Validation
+                        </span>
+                        <span class="status warning">
+                            <i class="fas fa-check-circle"></i> XSS Prevention
+                        </span>
+                    </div>
+                </section>
+
+                <!-- Performance -->
+                <section class="card animate-in" style="animation-delay: 0.5s">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3>بهینه‌سازی عملکرد</h3>
+                    </div>
+                    
+                    <div class="tech-tags">
+                        <span class="tech-tag"><i class="fas fa-search"></i> Debounced Search</span>
+                        <span class="tech-tag"><i class="fas fa-copy"></i> Pagination</span>
+                        <span class="tech-tag"><i class="fas fa-sync-alt"></i> Lazy Loading</span>
+                        <span class="tech-tag"><i class="fas fa-compress-arrows-alt"></i> Minification</span>
+                        <span class="tech-tag"><i class="fas fa-bolt"></i> Caching</span>
+                        <span class="tech-tag"><i class="fas fa-image"></i> Image Optimization</span>
+                    </div>
+                    
+                    <div style="background: var(--background); padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <h4 style="color: var(--primary-dark); margin-bottom: 10px;">⚡ تکنیک‌های بهینه‌سازی</h4>
+                        <table class="data-table">
+                            <tr>
+                                <td>Debouncing Search</td>
+                                <td>کاهش درخواست‌های API هنگام تایپ</td>
+                            </tr>
+                            <tr>
+                                <td>Pagination</td>
+                                <td>بارگذاری داده‌ها به صورت صفحه‌ای</td>
+                            </tr>
+                            <tr>
+                                <td>Lazy Loading</td>
+                                <td>بارگذاری منابع هنگام نیاز</td>
+                            </tr>
+                            <tr>
+                                <td>Caching</td>
+                                <td>ذخیره‌سازی داده‌های پرکاربرد</td>
+                            </tr>
+                            <tr>
+                                <td>Minification</td>
+                                <td>فشرده‌سازی فایل‌های CSS/JS</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="code-container" style="margin: 20px 0;">
+                        <div class="code-header">
+                            <i class="fas fa-code"></i> تابع Debounce برای جستجو
+                        </div>
+                        <div class="code-block">
+                            <span class="code-keyword">function</span> <span class="code-function">debounce</span>(<span class="code-variable">func</span>, <span class="code-variable">wait</span>) {<br>
+                            &nbsp;&nbsp;<span class="code-keyword">let</span> <span class="code-variable">timeout</span>;<br>
+                            &nbsp;&nbsp;<span class="code-keyword">return function</span> <span class="code-function">executedFunction</span>(...<span class="code-variable">args</span>) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">const</span> <span class="code-function">later</span> = () <span class="code-keyword">=&gt;</span> {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">clearTimeout</span>(<span class="code-variable">timeout</span>);<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">func</span>(...<span class="code-variable">args</span>);<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">clearTimeout</span>(<span class="code-variable">timeout</span>);<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-variable">timeout</span> = <span class="code-function">setTimeout</span>(<span class="code-variable">later</span>, <span class="code-variable">wait</span>);<br>
+                            &nbsp;&nbsp;};<br>
+                            }
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer animate-in" style="animation-delay: 0.6s">
+            <div class="footer-logo">
+                <i class="fas fa-leaf"></i>
+                <h3 style="color: var(--primary-dark);">هاویر کشت</h3>
+            </div>
+            
+            <p>سیستم مدیریت کشاورزی هوشمند | مستندات فنی جامع</p>
+            <p style="opacity: 0.8; margin: 10px 0; font-size: 14px;">
+                شامل ۳,۸۴۹ خط کد | ۶ فایل اصلی | ۲۰+ کامپوننت
+            </p>
+            
+            <div class="version">
+                نسخه مستندات: ۲.۰ | تاریخ تولید: ۱۴۰۴
+            </div>
+            
+            <div style="margin-top: 20px; color: var(--text-light); font-size: 13px;">
+                <p>
+                    <i class="fas fa-code"></i> توسعه‌یافته با 
+                    <i class="fas fa-heart" style="color: #ef4444;"></i> 
+                    و بهترین روش‌های توسعه نرم‌افزار
+                </p>
+                <p style="margin-top: 10px;">
+                    <i class="fas fa-info-circle"></i> این مستندات به‌طور خودکار از کدهای پروژه استخراج شده است.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all buttons
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get target section
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                // Smooth scroll to section
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Update active tab
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show corresponding content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Update active nav button on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.scrollY + 150;
+            
+            let currentActive = null;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+                    currentActive = sectionId;
+                }
+            });
+            
+            if (currentActive) {
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('href') === `#${currentActive}`) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // File details modal (placeholder)
+        function showFileDetails(fileName) {
+            const details = {
+                'index.html': {
+                    lines: 139,
+                    description: 'صفحه اصلی ورود به سیستم',
+                    functions: ['ساختار HTML', 'فرم ورود', 'مودال‌ها']
+                },
+                'login-script.js': {
+                    lines: 416,
+                    description: 'منطق احراز هویت و مدیریت ورود',
+                    functions: ['handleLogin()', 'checkApiStatus()', 'saveUserData()']
+                },
+                'style.css': {
+                    lines: 450,
+                    description: 'استایل‌های صفحه ورود با طراحی مدرن',
+                    features: ['تم تاریک/روشن', 'انیمیشن‌ها', 'رسپانسیو']
+                },
+                'main.html': {
+                    lines: 732,
+                    description: 'صفحه داشبورد مدیریت با تمام کامپوننت‌ها',
+                    components: ['Sidebar', 'Data Tables', 'Modals', 'Pagination']
+                },
+                'main-script.js': {
+                    lines: 1096,
+                    description: 'منطق اصلی برنامه و مدیریت state',
+                    functions: ['apiRequest()', 'showSection()', 'loadProvinces()', 'renderTable()']
+                },
+                'main-style.css': {
+                    lines: 1016,
+                    description: 'استایل‌های کامل داشبورد',
+                    features: ['CSS Grid', 'Flexbox', 'Responsive', 'Animations']
+                }
+            };
+            
+            const fileInfo = details[fileName];
+            if (fileInfo) {
+                alert(`📄 ${fileName}\n\n📏 ${fileInfo.lines} خط کد\n📝 ${fileInfo.description}\n\n🎯 ویژگی‌ها:\n${fileInfo.functions ? fileInfo.functions.map(f => `• ${f}`).join('\n') : fileInfo.components ? fileInfo.components.map(c => `• ${c}`).join('\n') : fileInfo.features.map(f => `• ${f}`).join('\n')}`);
+            }
+        }
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+
+        // Initialize tabs
+        document.querySelectorAll('.tab').forEach((tab, index) => {
+            if (index === 0) {
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            }
+        });
+
+        // Add copy URL functionality
+        document.querySelectorAll('.url').forEach(urlElement => {
+            urlElement.style.cursor = 'pointer';
+            urlElement.title = 'کلیک برای کپی';
+            urlElement.addEventListener('click', function() {
+                const textToCopy = this.textContent;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = 'کپی شد! ✓';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        });
+
+        // Print functionality
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                alert('برای پرینت گرفتن مستندات، از منوی File > Print استفاده کنید.');
+            }
+        });
+
+        // Mobile menu toggle (if needed)
+        if (window.innerWidth < 768) {
+            const nav = document.querySelector('.nav');
+            const navContainer = document.querySelector('.nav-container');
+            
+            // Create mobile toggle button
+            const toggleBtn = document.createElement('button');
+            toggleBtn.innerHTML = '<i class="fas fa-bars"></i> منو';
+            toggleBtn.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: var(--primary);
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 8px;
+                font-weight: bold;
+                box-shadow: var(--shadow);
+            `;
+            
+            document.body.appendChild(toggleBtn);
+            
+            // Toggle menu on click
+            toggleBtn.addEventListener('click', () => {
+                nav.style.display = nav.style.display === 'none' ? 'flex' : 'none';
+            });
+            
+            // Hide menu initially on mobile
+            nav.style.display = 'none';
+            navContainer.style.position = 'relative';
+            navContainer.style.top = '60px';
+        }
+    </script>
+</body>
+</html>
